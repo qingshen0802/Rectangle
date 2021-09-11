@@ -5,12 +5,21 @@ struct Rectangle {
 }
 
 impl Rectangle {
+    // These are methods of struct
     fn area(&self) -> u32 {
         self.width * self.height
     }
 
     fn can_hold(&self, other: &Rectangle) -> bool {
         self.width > other.width && self.height > other.height
+    }
+
+    // This is associated function of struct
+    fn square(size: u32) -> Rectangle {
+        Rectangle{
+            width: size,
+            height: size,
+        }
     }
 }
 
@@ -70,8 +79,11 @@ fn can_hold() {
         height: 70,
     };
 
+    let square = Rectangle::square(50);
+
     println!("Can Rect 1 hold the Rect 2? {}", rect1.can_hold(&rect2));
     println!("Can Rect 1 hold the Rect 3? {}", rect1.can_hold(&rect3));
+    println!("Can Rect 1 hold the Square? {}", rect1.can_hold(&square));
 }
 
 fn area_struct(rect: &Rectangle) -> u32 {
